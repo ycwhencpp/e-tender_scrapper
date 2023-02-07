@@ -86,7 +86,6 @@ class Scraper:
         if self.row_count == 1:
             write_header = True 
 
-        
         with open(self.file_path, 'a', newline='') as file:
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             if write_header:
