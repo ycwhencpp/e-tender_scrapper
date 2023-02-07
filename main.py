@@ -2,14 +2,11 @@ import requests
 import csv
 from bs4 import BeautifulSoup
 from datetime import datetime
-
 import lxml
-
 
 class Scraper:
     def __init__(self, url):
         self.url = url
-
         self.metadata = {
             'S.no':0,
             'data_source': 'Central Public Procurement portal',
@@ -24,7 +21,6 @@ class Scraper:
         # getting whole html content 
         page = requests.get(self.url)
         soup = BeautifulSoup(page.text, 'lxml') # Use 'lxml' library instead of 'html.parser'
-        
         tender_table=soup.find('table',attrs={'class':'list_table'}) # scraping and storing tables whose class name is"list_table"
 
         if tender_table:
@@ -34,8 +30,6 @@ class Scraper:
                 
 
                 cells = row.find_all('td') #fetching the table data
-
-
 
                 if cells:
                     self.metadata['S.no'] = self.row_count
