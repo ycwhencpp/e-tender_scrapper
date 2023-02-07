@@ -84,8 +84,7 @@ class Scraper:
         # write_header flag is only set to True if the file doesn't already exist and the row_count is 1
         write_header = False 
         if self.row_count == 1:
-            if not os.path.exists(self.file_path):
-                write_header = True 
+            write_header = True 
 
         
         with open(self.file_path, 'a', newline='') as file:
