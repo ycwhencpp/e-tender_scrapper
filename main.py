@@ -21,7 +21,6 @@ class Scraper:
         # getting whole html content 
         page = requests.get(self.url)
         soup = BeautifulSoup(page.text, 'lxml') # Use 'lxml' library instead of 'html.parser'
-
         tender_table=soup.find('table',attrs={'class':'list_table'}) # scraping and storing tables whose class name is"list_table"
 
         if tender_table:
