@@ -14,12 +14,12 @@ class scraper:
         page = requests.get(self.url)
         soup = BeautifulSoup(page.content,'html.parser')
         tender_table=soup.find('table',attrs={'class':'list_table'})
-        print(tender_table)
+        # print(tender_table)
         if tender_table:
             rows=tender_table.find_all('tr')
             for row in rows:
-                # if 'list_header' in row['class']:
-                #     continue
+                if 'list_header' in row['class']:
+                    continue
                 cols = row.find_all('td')
                 cols =[col.text.strip() for col in cols]
                 self.tenders.append(cols)
