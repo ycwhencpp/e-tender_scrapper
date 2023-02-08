@@ -4,6 +4,7 @@ import logging
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+import config
 
 class Scraper:
     def __init__(self, url, log_level=logging.INFO):
@@ -13,11 +14,11 @@ class Scraper:
         self.row_count = 1
 
         # fetching the filepath from the os 
-        self.file_path = os.environ.get('FILE_PATH') or 'e_tender_data.csv'
+        self.file_path = config.FILE_PATH
 
 
         # create a FileHandler and set a log file
-        self.log_file = os.environ.get('LOG_FILE') or 'scraper.log'
+        self.log_file = config.LOG_FILE 
 
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(log_level)
@@ -121,21 +122,24 @@ class Scraper:
 
 
 
+
+
 def main():
 
-    # Get the URL from the environment variable, or use the default URL
-    url = os.environ.get('URL') or 'https://etenders.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTendersByOrganisation&service=direct'
-    
-    # Create an instance of the Scraper class
-    scraper = Scraper(url)
+    start_time = datetime.now()
 
-    # Call the `get_data` method of the Scraper class
+    scraper = Scraper(config.URL, log_level=config.LOG_LEVEL)
     scraper.get_data()
+
+    end_time = datetime.now()
+    elapsed_time = end_time - start_time
+    scraper.logger.info(f"Elapsed time: {elapsed_time}")
 
 
 if __name__ == "__main__":
-
+    
     main()
+    
 
 
 

@@ -1,5 +1,7 @@
 requests
 beautifulsoup4
-lxml
 csv
 datetime
+logging
+requests_mock
+unittest
