@@ -4,7 +4,7 @@ import logging
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
-import config
+import client
 
 class Scraper:
     def __init__(self, url, log_level=logging.INFO):
@@ -14,11 +14,11 @@ class Scraper:
         self.row_count = 1
 
         # fetching the filepath from the os 
-        self.file_path = config.FILE_PATH
+        self.file_path = client.FILE_PATH
 
 
         # create a FileHandler and set a log file
-        self.log_file = config.LOG_FILE 
+        self.log_file = client.LOG_FILE 
 
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(log_level)
@@ -127,7 +127,7 @@ def main():
 
     start_time = datetime.now()
 
-    scraper = Scraper(config.URL, log_level=config.LOG_LEVEL)
+    scraper = Scraper(client.URL, log_level=client.LOG_LEVEL)
     scraper.get_data()
 
     end_time = datetime.now()
