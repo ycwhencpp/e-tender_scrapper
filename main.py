@@ -123,7 +123,6 @@ class Scraper:
 
 
 
-
 def main():
 
     start_time = datetime.now()
@@ -139,7 +138,8 @@ def main():
 if __name__ == "__main__":
     
     main()
-    
+
+
 
 
 
